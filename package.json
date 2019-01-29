@@ -1,0 +1,63 @@
+{
+	"name": "voice-tools",
+	"displayName": "voice-tools",
+	"description": "A collection of improvements to help with the creation of voice first apps.",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.30.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:voicetools.aplEditor",
+		"onCommand:voicetools.aplReference",
+		"onCommand:voicetools.alexaConsole"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "voicetools.aplEditor",
+				"title": "Open APL Editor",
+				"category": "Voice Tools"
+			},
+			{
+				"command": "voicetools.alexaConsole",
+				"title": "Open ASK Console",
+				"category": "Voice Tools"
+			},
+			{
+				"command": "voicetools.aplReference",
+				"title": "APL Reference",
+				"category": "Reference"
+			}
+		],
+		"jsonValidation": [
+			{
+				"fileMatch": "models/*.json",
+				"url": "./out/model-schema.json"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./; gulp schema",
+		"watch": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "npm run compile && node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"@types/mocha": "^2.2.42",
+		"@types/node": "^8.10.25",
+		"gulp": "^4.0.0",
+		"tslint": "^5.8.0",
+		"typescript": "^3.1.4",
+		"vscode": "^1.1.25"
+	},
+	"dependencies": {
+		"jovo-cli": "^2.0.10",
+		"jovo-cli-platform-alexa": "^2.0.9",
+		"jovo-cli-platform-google": "^2.0.7"
+	}
+}
